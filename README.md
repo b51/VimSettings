@@ -16,9 +16,9 @@ You may want to modify author_name and author_email at line 62, 63 in ~/.vimrc a
 
 ## Plugins Usage Introduction
 
-以下说明根据有用程度排序
+**以下说明根据有用程度排序**
 
-Sorted with most useful top
+**Sorted with most useful top**
 
 ### YouCompleteMe
 
