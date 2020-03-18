@@ -129,15 +129,15 @@ endfunc
 "****************************************
         "taglist config
 "****************************************
-if getfsize(".vimscript")>0
-    source .vimscript
-endif
-
-let Tlist_Exit_OnlyWindow=1
-"let Tlist_Auto_Open=1
-let Tlist_File_Fold_Auto_Close=1
-let Tlist_Use_Right_Window=1
-nnoremap <silent> <F8> :TlistToggle<CR>
+"if getfsize(".vimscript")>0
+"    source .vimscript
+"endif
+"
+"let Tlist_Exit_OnlyWindow=1
+""let Tlist_Auto_Open=1
+"let Tlist_File_Fold_Auto_Close=1
+"let Tlist_Use_Right_Window=1
+"nnoremap <silent> <F8> :TlistToggle<CR>
 
 "****************************************
         "cscope config
@@ -219,9 +219,9 @@ let g:airline_symbols_branch = '⎇'
 "****************************************
         "tagbar settings
 "****************************************
-"let g:tagbar_width=35
-"let g:tagbar_autofocus=1
-"nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width=35
+let g:tagbar_autofocus=1
+nmap <F8> :TagbarToggle<CR>
 
 "****************************************
         "ctrlp settings:
@@ -359,6 +359,11 @@ syntax on
                "fzf"
 "****************************************
 set rtp+=/usr/local/opt/fzf
+
+"****************************************
+           "gutentags"
+"****************************************
+let g:gutentags_cache_dir='~/.cache/ctags'
 
 "****************************************
             "colorscheme"

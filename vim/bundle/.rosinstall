@@ -131,3 +131,7 @@
     local-name: fzf.vim
     uri: https://github.com/junegunn/fzf.vim
     version: master
+- git:
+    local-name: vim-gutentags
+    uri: https://github.com/ludovicchabant/vim-gutentags
+    version: master

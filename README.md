@@ -11,6 +11,10 @@ $ cd VimSettings
 $ ./setup.sh
 ```
 
+**安装后回车键在 insert 模式下可能会失效，这时候可以用 ctrl + 'j' 来替代回车换行**
+
+**After installation, enter may not working in insert mode, ctrl + 'j' can be used as an alternative**
+
 You may want to modify author_name and author_email at line 62, 63 in ~/.vimrc after installation
 
 
