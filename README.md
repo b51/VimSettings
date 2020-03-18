@@ -54,19 +54,13 @@ Reference: https://courses.cs.washington.edu/courses/cse451/10au/tutorials/tutor
 
 ```bash
 功能: 跳转到函数定义，即便是在不同文件/不同文件夹内也能跳转
-启用: 该功能需要先安装 exuberant-ctags (setup.sh 内已安装), 并且需要先在 repository 文件夹中生成 tags 查找文件,
+启用: 该功能需要先安装 exuberant-ctags (setup.sh 内已安装), 在打开文件时gutentags会自动中生成tags查找文件,
       然后就可以在函数上按 ctrl + ']' 跳转到函数定义, 然后 ctrl + 't' 返回, 可以多次跳转
-$ cd YOUR_SOURCE_ROOT_DIRECTORY
-$ ctags -R *
-$ ls tags
 快捷键: 在函数或变量上按 ctrl + ']' 跳转到定义, ctrl + 't' 返回
 
 Function: Jump to definition of function/variable, even definition not in the same file
 Enable: exuberant-ctags is necessary to enable this function (alread installed after launch setup.sh),
-        and a look up table file "tags" should be generated before usage with command below
-$ cd YOUR_SOURCE_ROOT_DIRECTORY
-$ ctags -R *
-$ ls tags
+        and a look up table file "tags" will be auto generated to ~/.cache/ctags/ when open file
 ShortCut: Press ctrl + ']' on function/variable jump to definition, ctrl + 't' return, can jump recursively
 ```
 
