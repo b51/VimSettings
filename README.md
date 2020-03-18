@@ -94,9 +94,8 @@ Reference: https://github.com/inkarkat/vim-mark
 启用: 在想高亮的字上顺序按下 '\' 和 'm'
 快捷键: 顺序按下 '\' 和 '*' 可以搜索该高亮关键字
 
-Function: Display functions/variables in current file on the right
-Enable/Disable: 'F8'
-ShortCut: 'j', 'k' move down and up; enter goto function/variable
+Function: Highlight multiple words
+ShortCut: Press '\' + 'm' on word will highlight this one, '\' + '*' to search this word
 ```
 
 <div align="middle">

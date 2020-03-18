@@ -59,8 +59,9 @@ endif
 "****************************************
 autocmd BufNewFile *.py call SetPythonHeader()
 autocmd BufNewFile *.hpp,*.cpp,,*.cc,*.[ch],*.sh,*.java call SetHeader()
-let $author_name = "b51"
-let $author_email = "b51live@gmail.com"
+let $author_name = "{set name in ~/.vimrc line 62}"
+let $author_email = "{set mail in ~/.vimrc line 63}"
+let $default_license = "{set license in ~/.vimrc line 64}"
 
 function! SetHeader()
   "*.sh
@@ -85,7 +86,7 @@ function! SetHeader()
     call append(line(".")+3, "\*            FileName: ".expand("%:t"))
     call append(line(".")+4, "\*")
     call append(line(".")+5, "\*          Created On: ".strftime("%c"))
-    call append(line(".")+6, "\*     Licensed under The MIT License [see LICENSE for details]")
+    call append(line(".")+6, "\*     Licensed under The ".$default_license." License [see LICENSE for details]")
     call append(line(".")+7, "\*")
     call append(line(".")+8, "************************************************************************/")
     call append(line(".")+9, "")
@@ -118,7 +119,7 @@ function! SetPythonHeader()
   call append(line(".")+4, "\#            FileName: ".expand("%:t"))
   call append(line(".")+5, "\#")
   call append(line(".")+6, "\#          Created On: ".strftime("%c"))
-  call append(line(".")+7, "\#     Licensed under The MIT License [see LICENSE for details]")
+  call append(line(".")+7, "\#     Licensed under The ".$default_license." License [see LICENSE for details]")
   call append(line(".")+8, "\#")
   call append(line(".")+9, "\#########################################################################")
   call append(line(".")+10, "")
