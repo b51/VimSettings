@@ -194,7 +194,7 @@ set cursorcolumn
         "airline settings
 "****************************************
 "let g:airline_theme="hybridline"
-let g:airline_theme="dracula"
+let g:airline_theme="papercolor"
 set laststatus=2
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
