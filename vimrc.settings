@@ -194,7 +194,7 @@ set cursorcolumn
         "airline settings
 "****************************************
 "let g:airline_theme="hybridline"
-let g:airline_theme="papercolor"
+let g:airline_theme="simple"
 set laststatus=2
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
@@ -344,6 +344,9 @@ let g:cm_server_python_interpreter='/usr/local/bin/python3'
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_enable_diagnostic_highlighting=0
 let g:ycm_add_preview_to_completeopt=0
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "****************************************
             "normal"
@@ -397,5 +400,6 @@ let g:indentLine_char = '︙'
 set tags=./tags,tags;
 set runtimepath^=~/.vim/bundle/ag.vim
 set complete=.,w,b,u,t
+set backspace=indent,eol,start
 
 set encoding=utf-8
