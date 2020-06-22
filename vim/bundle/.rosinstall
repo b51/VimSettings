@@ -135,3 +135,7 @@
     local-name: vim-gutentags
     uri: https://github.com/ludovicchabant/vim-gutentags
     version: master
+- git:
+    local-name: vim-cpp-enhanced-highlight
+    uri: https://github.com/octol/vim-cpp-enhanced-highlight
+    version: master
