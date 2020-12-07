@@ -139,3 +139,11 @@
     local-name: vim-cpp-enhanced-highlight
     uri: https://github.com/octol/vim-cpp-enhanced-highlight
     version: master
+- git:
+    local-name: vim-latex-live-preview
+    uri: https://github.com/xuhdev/vim-latex-live-preview
+    version: master
+- git:
+    local-name: vimtex
+    uri: https://github.com/lervag/vimtex
+    version: master
