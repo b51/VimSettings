@@ -147,3 +147,7 @@
     local-name: vimtex
     uri: https://github.com/lervag/vimtex
     version: master
+- git:
+    local-name: undotree
+    uri:  https://github.com/mbbill/undotree
+    version: master
