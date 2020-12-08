@@ -396,6 +396,11 @@ nmap <Leader>L :set syntax=tex<CR>
       "vim-cpp-enhanced-highlight"
 "****************************************
 
+"****************************************
+            "undotree"
+"****************************************
+nnoremap <F5> :UndotreeToggle<CR>
+
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
 
