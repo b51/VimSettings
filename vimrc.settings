@@ -371,11 +371,6 @@ let g:gutentags_cache_dir='~/.cache/ctags'
 "****************************************
             "colorscheme"
 "****************************************
-"------ solarized ------
-"set background=dark
-"let g:solarized_termcolors=256
-"colorscheme solarized
-
 "------ dracula ------
 "let g:dracula_colorterm = 0
 "colorscheme dracula
@@ -389,7 +384,7 @@ colorscheme molokai
 " let g:livepreview_previewer = 'evince'
 let g:livepreview_previewer = 'zathura'
 let g:livepreview_engine = 'xelatex'
-:autocmd FileType wiki,tex setl updatetime=100
+:autocmd FileType vimwiki,tex setlocal updatetime=200
 nmap <Leader>L :set syntax=tex<CR>
 
 "****************************************
@@ -422,4 +417,5 @@ set backspace=indent,eol,start
 set history=1000
 set t_ut=
 set nofoldenable
+
 set encoding=utf-8
