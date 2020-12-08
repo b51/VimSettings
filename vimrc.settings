@@ -415,5 +415,6 @@ set runtimepath^=~/.vim/bundle/ag.vim
 set complete=.,w,b,u,t
 set backspace=indent,eol,start
 set history=1000
-
+set t_ut=
+set nofoldenable
 set encoding=utf-8
