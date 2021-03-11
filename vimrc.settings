@@ -34,9 +34,51 @@ endif
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
 "if has("autocmd")
-execute pathogen#infect()
-filetype plugin indent on
+" execute pathogen#infect()
+" filetype plugin indent on
 "endif
+
+call plug#begin('~/.vim/bundle')
+    Plug 'vim-scripts/Conque-Shell'
+    Plug 'sirver/UltiSnips'
+    Plug 'rking/ag.vim'
+    Plug 'chriskempson/base16-vim'
+    Plug 'mattn/calendar-vim'
+    Plug 'tacahiroy/ctrlp-funky'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'junegunn/fzf.vim'
+    Plug 'davidhalter/jedi-vim'
+    Plug 'b51/markdown-preview.vim'
+    Plug 'tomasr/molokai'
+    Plug 'scrooloose/nerdtree'
+    Plug 'danro/rename.vim'
+    Plug 'vim-syntastic/syntastic'
+    Plug 'godlygeek/tabular'
+    Plug 'majutsushi/tagbar'
+    Plug 'vim-scripts/taglist.vim'
+    Plug 'mbbill/undotree'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'google/vim-codefmt'
+    Plug 'tpope/vim-commentary'
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'dracula/vim', { 'as': 'dracula.vim' }
+    Plug 'easymotion/vim-easymotion'
+    Plug 'tpope/vim-fugitive'
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'inkarkat/vim-ingo-library'
+    Plug 'xuhdev/vim-latex-live-preview'
+    Plug 'andrejlevkovitch/vim-lua-format'
+    Plug 'google/vim-maktaba'
+    Plug 'inkarkat/vim-mark'
+    Plug 'samoshkin/vim-mergetool'
+    Plug 'tpope/vim-repeat'
+    Plug 'kshenoy/vim-signature'
+    Plug 'tpope/vim-surround'
+    Plug 'lervag/vimtex'
+    Plug 'vimwiki/vimwiki'
+    Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
+call plug#end()
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
