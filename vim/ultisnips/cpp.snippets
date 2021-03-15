@@ -24,3 +24,16 @@ class ${1:MyClass} {
     $1& operator=($1&& other) = delete;
 };
 endsnippet
+
+snippet func_call "Display msg with function enter and exit"
+#define FUNC_CALL() TracerT _token(__func__)
+struct TracerT {
+    char const* fname_;
+    TracerT(char const* fname) : fname_(fname) {
+        std::cout << "-- ***** " << fname_ << " ***** --" << std::endl;
+    }
+    ~TracerT() {
+        std::cout << "== ***** " << fname_ << " ***** ==" << std::endl;
+    }
+};
+endsnippet
