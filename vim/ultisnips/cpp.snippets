@@ -15,12 +15,14 @@ snippet class "new class with copy and move constructor deleted"
 class ${1:MyClass} {
    public:
     $1();
-	~$1();
+    ~$1();
 
    public:
+    // copy constructors
     $1(const $1& other) = delete;
-    $1& operator=(const $1&& other) = delete;
-    $1($1& other) = delete;
+    $1& operator=(const $1& other) = delete;
+    // move constructors
+    $1($1&& other) = delete;
     $1& operator=($1&& other) = delete;
 };
 endsnippet

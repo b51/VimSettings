@@ -11,12 +11,14 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install clang-format exuberant-ctags cscope global python-wstool -y
+sudo apt install clang-format exuberant-ctags cscope global -y
 cp vimrc.settings ~/.vimrc
 cp -rf vim ~/.vim
 cp clang-format.setting ~/.clang-format
 cd ~/.vim/bundle/
-#cat .rosinstall | grep uri | awk '{print $2}' | while read line; do git clone --recursive $line; done;
-wstool update -j4
-cd YouCompleteMe
-python3 install.py --clang-completer
+vim +PlugInstall +qall
+# cat .rosinstall | grep uri | awk '{print $2}' | while read line; do git clone --recursive $line; done;
+# nvim --headless +PlugInstall +qall
+# wstool update -j4
+# cd YouCompleteMe
+# python3 install.py --clang-completer
