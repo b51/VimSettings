@@ -48,7 +48,8 @@ call plug#begin('~/.vim/bundle')
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
-    Plug 'b51/markdown-preview.vim'
+    " Plug 'b51/markdown-preview.vim'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'tomasr/molokai'
     Plug 'scrooloose/nerdtree'
     Plug 'danro/rename.vim'
@@ -322,7 +323,7 @@ command! -bar SetupPython call SetupPython()
 "****************************************
             "vimwiki"
 "****************************************
-let g:vimwiki_list = [{'path': '~/Documents/VimWiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
+let g:vimwiki_list = [{'path': '~/Documents/VimWiki/', 'syntax': 'markdown', 'ext': '.md'}]
 au BufRead, BufNewFile *.wiki set filetype=vimwiki
 function! ToggleCalendar()
   execute ":Calendar"

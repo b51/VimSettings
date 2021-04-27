@@ -119,6 +119,13 @@ ShortCut: 'j', 'k' move down and up; 'u' go to upper director; enter open file/d
   <img src="Pics/NerdTree.png" height="500">
 </div>
 
+### Markdownpreview
+
+```bash
+$ cd ~/.vim/bundle/markdown-preview.nvim/app
+$ yarn install
+```
+
 ### TagList
 
 Reference: https://github.com/vim-scripts/taglist.vim
