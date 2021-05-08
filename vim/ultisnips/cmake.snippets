@@ -19,10 +19,11 @@ endif(CMAKE_BUILD_TYPE STREQUAL "Release")
 
 find_package(OpenCV REQUIRED)
 find_package(Eigen3 REQUIRED)
+find_package(glog REQUIRED)
 
 include_directories(
-	#{EIGEN3_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIRS}
 )
 
 ###########
@@ -35,9 +36,8 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
   ${OpenCV_LIBRARIES}
-  -lgflags
-  -lglog
-  -Wl,--no-whole-archive
+  glog::glog
+  # -Wl,--no-whole-archive
 )
 
 endsnippet
