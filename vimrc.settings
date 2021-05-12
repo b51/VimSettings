@@ -415,11 +415,28 @@ let g:gutentags_cache_dir='~/.cache/ctags'
             "colorscheme"
 "****************************************
 "------ dracula ------
-"let g:dracula_colorterm = 0
-"colorscheme dracula
+" let g:dracula_colorterm = 0
+" colorscheme dracula
 
 "------ molokai ------
-colorscheme molokai
+" colorscheme molokai
+" let g:molokai_original = 1
+" let g:rehash256 = 1
+
+"------ purify ------
+let g:purify_italic = 0
+" let g:airline_theme='purify'
+colorscheme purify
+
+"------ one ------
+" let g:one_allow_italics = 1
+" colorscheme one
+" let g:airline_theme='one'
+
+"------ molokai ------
+" colorscheme monokai
+" highlight Normal ctermbg=None
+" set termguicolors
 
 "****************************************
       "vim-latex-live-preview"
@@ -442,9 +459,9 @@ nnoremap <F5> :UndotreeToggle<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
 
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set cindent
 set expandtab
 set autochdir
