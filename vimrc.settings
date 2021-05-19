@@ -40,7 +40,7 @@ endif
 
 call plug#begin('~/.vim/bundle')
     Plug 'vim-scripts/Conque-Shell'
-    Plug 'sirver/UltiSnips'
+    Plug 'SirVer/ultisnips'
     Plug 'rking/ag.vim'
     Plug 'chriskempson/base16-vim'
     Plug 'mattn/calendar-vim'
@@ -427,8 +427,6 @@ let g:gutentags_cache_dir='~/.cache/ctags'
 " let g:rehash256 = 1
 
 "------ purify ------
-let g:purify_italic = 0
-" let g:airline_theme='purify'
 colorscheme purify
 
 "------ one ------
