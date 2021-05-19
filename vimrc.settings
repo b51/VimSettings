@@ -44,8 +44,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'rking/ag.vim'
     Plug 'chriskempson/base16-vim'
     Plug 'mattn/calendar-vim'
-    Plug 'tacahiroy/ctrlp-funky'
-    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
     " Plug 'b51/markdown-preview.vim'
@@ -78,10 +76,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-surround'
     Plug 'lervag/vimtex'
     Plug 'vimwiki/vimwiki'
-    Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
     Plug 'sickill/vim-monokai'
     Plug 'rakr/vim-one'
     Plug 'kyoz/purify', { 'rtp': 'vim' }
+    Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+    Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
 call plug#end()
 
 " The following are commented out as they cause vim to behave a lot
@@ -270,25 +269,14 @@ let g:tagbar_autofocus=1
 nmap <F8> :TagbarToggle<CR>
 
 "****************************************
-        "ctrlp settings:
+        "LeaderF settings:
 "****************************************
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|public\|build$\|log\|tmp$',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-  \ }
-"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-"
-"****************************************
-        "ctrlp-funky settings:
-"****************************************
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:Lf_ShortcutF = '<C-P>'
+" let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_ReverseOrder = 1
+let g:Lf_WorkingDirectoryMode = 'AF'
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
 
 "****************************************
         "ag settings:
@@ -447,6 +435,7 @@ let g:livepreview_previewer = 'zathura'
 let g:livepreview_engine = 'xelatex'
 :autocmd FileType vimwiki,tex setlocal updatetime=200
 nmap <Leader>L :set syntax=tex<CR>
+" :LLPStartPreview
 
 "****************************************
       "vim-cpp-enhanced-highlight"
