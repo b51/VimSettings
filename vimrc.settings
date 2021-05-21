@@ -23,7 +23,7 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-"set background=dark
+" set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -46,10 +46,12 @@ call plug#begin('~/.vim/bundle')
     Plug 'mattn/calendar-vim'
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
-    " Plug 'b51/markdown-preview.vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'tomasr/molokai'
     Plug 'scrooloose/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'danro/rename.vim'
     Plug 'vim-syntastic/syntastic'
     Plug 'godlygeek/tabular'
@@ -219,6 +221,8 @@ wincmd w
 autocmd vimenter * wincmd w
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+let g:NERDTreeGitStatusUseNerdFonts = 1
+
 " Highlight current line
 "au WinLeave * set nocursorline nocursorcolumn
 "au WinEnter * set cursorline cursorcolumn
@@ -238,7 +242,7 @@ set cursorcolumn
 "****************************************
         "airline settings
 "****************************************
-"let g:airline_theme="hybridline"
+" let g:airline_theme="hybridline"
 let g:airline_theme="simple"
 set laststatus=2
 set t_Co=256
