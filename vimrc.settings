@@ -454,6 +454,10 @@ nnoremap <F5> :UndotreeToggle<CR>
             "rainbow"
 "****************************************
 let g:rainbow_active = 1
+augroup rainbow_off
+    au!
+    au FileType cmake RainbowToggleOff
+augroup END
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
