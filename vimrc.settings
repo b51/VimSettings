@@ -82,7 +82,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'luochen1990/rainbow'
     Plug 'kyoz/purify', { 'rtp': 'vim' }
     Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-    Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
+    Plug 'Valloric/YouCompleteMe', { 'do': 'git checkout d98f896a' ,'python3 install.py --clang-completer --system-libclang' }
 call plug#end()
 
 " The following are commented out as they cause vim to behave a lot
@@ -414,12 +414,12 @@ let g:gutentags_cache_dir='~/.cache/ctags'
 " colorscheme dracula
 
 "------ molokai ------
-" colorscheme molokai
-" let g:molokai_original = 1
+colorscheme molokai
+let g:molokai_original = 1
 " let g:rehash256 = 1
 
 "------ purify ------
-colorscheme purify
+" colorscheme purify
 
 "------ one ------
 " let g:one_allow_italics = 1
