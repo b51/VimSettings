@@ -11,14 +11,13 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install clang-format exuberant-ctags cscope global -y
+sudo apt install neovim clang-format exuberant-ctags cscope global -y
+pip2 install --user pynvim
+pip3 install --user pynvim
+mkdir -p ~/.config/nvim
+cp init.vim ~/.config/nvim
 cp vimrc.settings ~/.vimrc
 cp -rf vim ~/.vim
 cp clang-format.setting ~/.clang-format
 cd ~/.vim/bundle/
-vim +PlugInstall +qall
-# cat .rosinstall | grep uri | awk '{print $2}' | while read line; do git clone --recursive $line; done;
-# nvim --headless +PlugInstall +qall
-# wstool update -j4
-# cd YouCompleteMe
-# python3 install.py --clang-completer
+nvim +PlugInstall +qall
