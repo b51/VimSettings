@@ -4,6 +4,7 @@ project(${1:helloworld})
 
 add_definitions(-std=c++11)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #########################################################################
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Release")
