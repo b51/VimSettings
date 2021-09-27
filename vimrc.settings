@@ -438,16 +438,6 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "****************************************
-            "normal"
-"****************************************
-set nu
-set hlsearch
-set noautoindent
-set ruler
-syntax enable
-syntax on
-
-"****************************************
                "fzf"
 "****************************************
 set rtp+=/usr/local/opt/fzf
@@ -496,14 +486,17 @@ endif
 "****************************************
             "colorscheme"
 "****************************************
+if (has("termguicolors"))
+    set termguicolors
+endif
 "------ dracula ------
 " let g:dracula_colorterm = 0
 " colorscheme dracula
 
 "------ molokai ------
 colorscheme molokai
-let g:molokai_original = 1
-" let g:rehash256 = 1
+" let g:molokai_original = 1
+let g:rehash256 = 1
 
 "------ purify ------
 " colorscheme purify
@@ -529,10 +522,6 @@ nmap <Leader>L :set syntax=tex<CR>
 " :LLPStartPreview
 
 "****************************************
-      "vim-cpp-enhanced-highlight"
-"****************************************
-
-"****************************************
             "undotree"
 "****************************************
 nnoremap <F5> :UndotreeToggle<CR>
@@ -541,10 +530,13 @@ nnoremap <F5> :UndotreeToggle<CR>
             "rainbow"
 "****************************************
 let g:rainbow_active = 1
-augroup rainbow_off
-    au!
-    au FileType cmake RainbowToggleOff
-augroup END
+let g:rainbow_conf = {
+\   'separately': {
+\       'cmake': 0,
+\       'vimwiki': 0,
+\       'markdown': 0
+\   }
+\}
 
 "****************************************
             "asyncomplete"
@@ -657,6 +649,16 @@ endif
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
+
+"****************************************
+            "normal"
+"****************************************
+set nu
+set hlsearch
+set noautoindent
+set ruler
+syntax enable
+syntax on
 
 set shiftwidth=4
 set softtabstop=4
