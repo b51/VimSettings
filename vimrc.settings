@@ -487,7 +487,7 @@ endif
             "colorscheme"
 "****************************************
 if (has("termguicolors"))
-    set termguicolors
+  set termguicolors
 endif
 "------ dracula ------
 " let g:dracula_colorterm = 0
@@ -498,7 +498,11 @@ colorscheme molokai
 " let g:molokai_original = 1
 let g:rehash256 = 1
 
-"------ purify ------
+"------ monokai ------
+" colorscheme monokai
+" highlight Normal ctermbg=None
+
+" ------ purify ------
 " colorscheme purify
 
 "------ one ------
@@ -506,10 +510,13 @@ let g:rehash256 = 1
 " colorscheme one
 " let g:airline_theme='one'
 
-"------ molokai ------
-" colorscheme monokai
-" highlight Normal ctermbg=None
-" set termguicolors
+" ------ challenger_deep ------
+" colorscheme challenger_deep
+
+" ------ papercolor ------
+" set t_Co=256
+" set background=dark
+" colorscheme PaperColor
 
 "****************************************
       "vim-latex-live-preview"
@@ -534,7 +541,7 @@ let g:rainbow_conf = {
 \   'separately': {
 \       'cmake': 0,
 \       'vimwiki': 0,
-\       'markdown': 0
+\       'markdown': 0,
 \   }
 \}
 
@@ -619,7 +626,8 @@ call quickui#menu#install('Help (&?)', [
 " context menu
 "----------------------------------------------------------------------
 let g:context_menu_k = [
-			\ ["&Peek Definition\tAlt+;", 'call quickui#tools#preview_tag("")'],
+			\ ["&NERDTree\t<space>tn", 'NERDTreeToggle', 'toggle nerdtree'],
+			\ ['List &Buffer', 'call quickui#tools#list_buffer("e")', ],
 			\ ["S&earch in Project\t\\cx", 'exec "silent! GrepCode! " . expand("<cword>")'],
 			\ [ "--", ],
 			\ [ "Find &Definition\t\\cg", 'call MenuHelp_Fscope("g")', 'GNU Global search g'],
@@ -660,9 +668,9 @@ set ruler
 syntax enable
 syntax on
 
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set cindent
 set expandtab
 set autochdir
