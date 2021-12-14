@@ -48,6 +48,10 @@ call plug#begin('~/.vim/bundle')
     Plug 'davidhalter/jedi-vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'tomasr/molokai'
+    Plug 'challenger-deep-theme/vim', { 'as': 'deep.vim' }
+    Plug 'NLKNguyen/papercolor-theme'
+    Plug 'joshdick/onedark.vim'
+    Plug 'ayu-theme/ayu-vim'
     Plug 'scrooloose/nerdtree'
     Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -542,6 +546,7 @@ let g:rainbow_conf = {
 \       'cmake': 0,
 \       'vimwiki': 0,
 \       'markdown': 0,
+\       'gitcommit': 0,
 \   }
 \}
 
@@ -626,20 +631,27 @@ call quickui#menu#install('Help (&?)', [
 " context menu
 "----------------------------------------------------------------------
 let g:context_menu_k = [
-			\ ["&NERDTree\t<space>tn", 'NERDTreeToggle', 'toggle nerdtree'],
+			\ ["&CopyHistory", 'reg', 'Display copy history'],
+			\ ["&NERDTree", 'NERDTreeToggle', 'toggle nerdtree'],
+			\ ['&Tagbar', 'Vista!!', 'toggle Vista'],
 			\ ['List &Buffer', 'call quickui#tools#list_buffer("e")', ],
-			\ ["S&earch in Project\t\\cx", 'exec "silent! GrepCode! " . expand("<cword>")'],
+			\ ["&Search in Project", 'Ag! --noaffinity "<cword>"'],
 			\ [ "--", ],
-			\ [ "Find &Definition\t\\cg", 'call MenuHelp_Fscope("g")', 'GNU Global search g'],
-			\ [ "Find &Symbol\t\\cs", 'call MenuHelp_Fscope("s")', 'GNU Gloal search s'],
-			\ [ "Find &Called by\t\\cd", 'call MenuHelp_Fscope("d")', 'GNU Global search d'],
-			\ [ "Find C&alling\t\\cc", 'call MenuHelp_Fscope("c")', 'GNU Global search c'],
-			\ [ "Find &From Ctags\t\\cz", 'call MenuHelp_Fscope("z")', 'GNU Global search c'],
+			\ [ "&FixIt\t(YCM)", 'YcmCompleter FixIt'],
 			\ [ "--", ],
-			\ [ "Goto D&efinition\t(YCM)", 'YcmCompleter GoToDefinitionElseDeclaration'],
-			\ [ "Goto &References\t(YCM)", 'YcmCompleter GoToReferences'],
-			\ [ "Get D&oc\t(YCM)", 'YcmCompleter GetDoc'],
-			\ [ "Get &Type\t(YCM)", 'YcmCompleter GetTypeImprecise'],
+			\ [ "Git Add\t", 'Git add .', 'Git add .'],
+			\ [ "Git Diff\t", 'Git diff', 'Git diff'],
+			\ [ "Git Diff --cached\t", 'Git diff --cached', 'Git diff --cached'],
+			\ [ "Git Commit\t", 'Git commit', 'Git commit'],
+			\ [ "Git Commit --amend\t", 'Git commit --amend', 'Git commit --amend'],
+			\ [ "Git Push\t", 'Git push', 'Git push'],
+			\ [ "--", ],
+			\ [ "Find &Definition\t\\g", 'cs find g "<cword>"', 'Cscope search g'],
+			\ [ "Find Symbol\t\\s", 'cs find s "<cword>"', 'Cscope search s'],
+			\ [ "Find Called by this function\t\\d", 'cs find d "<cword>"', 'Cscope search d'],
+			\ [ "Find Calling this function\t\\c", 'cs find c "<cword>"', 'Cscope search c'],
+			\ [ "Find Text string\t\\t", 'cs find t "<cword>"', 'Cscope search c'],
+			\ [ "Find Files including this file\t\\i", 'cs find i "<cword>"', 'Cscope search c'],
 			\ [ "--", ],
 			\ ['Dash &Help', 'call asclib#utils#dash_ft(&ft, expand("<cword>"))'],
 			\ ['Cpp&man', 'exec "Cppman " . expand("<cword>")', '', 'c,cpp'],
@@ -686,5 +698,4 @@ set backspace=indent,eol,start
 set history=1000
 set t_ut=
 set nofoldenable
-
 set encoding=utf-8
