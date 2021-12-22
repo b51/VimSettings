@@ -46,6 +46,15 @@ call plug#begin('~/.vim/bundle')
     Plug 'mattn/calendar-vim'
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
+    Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+    Plug 'deoplete-plugins/deoplete-jedi'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'tomasr/molokai'
     Plug 'challenger-deep-theme/vim', { 'as': 'deep.vim' }
@@ -242,16 +251,6 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 set cursorcolumn
 
 "****************************************
-        "powerline settings
-"****************************************
-"set guifont=PowerlineSymbols\ for\ Powerline
-"set nocompatible
-"set laststatus=2
-"set t_Co=256
-"let g:Powerline_symbols = 'fancy'
-"let Powerline_symbols='compatible'
-
-"****************************************
         "airline settings
 "****************************************
 " let g:airline_theme="hybridline"
@@ -433,13 +432,29 @@ let g:UltiSnipsEditSplit="vertical"
 "****************************************
             "YouCompleteMe"
 "****************************************
-let g:cm_server_python_interpreter='/usr/local/bin/python3'
+let g:cm_server_python_interpreter='/usr/bin/python3'
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_enable_diagnostic_highlighting=0
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_filepath_completion_use_wirking_dir=1
+
+"****************************************
+            "jedi-vim"
+"****************************************
+let g:jedi#completions_enabled = 0
+
+"****************************************
+          "deoplete.nvim"
+"****************************************
+let g:deoplete#enable_at_startup = 1
+
+"****************************************
+            "python-mode"
+"****************************************
+let g:pymode_rope = 0
 
 "****************************************
                "fzf"
