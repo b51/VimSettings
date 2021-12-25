@@ -47,14 +47,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
     Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
-    Plug 'deoplete-plugins/deoplete-jedi'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'tomasr/molokai'
     Plug 'challenger-deep-theme/vim', { 'as': 'deep.vim' }
@@ -95,7 +87,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'luochen1990/rainbow'
     Plug 'kyoz/purify', { 'rtp': 'vim' }
     Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-    Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
+    " Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
     Plug 'skywind3000/vim-quickui'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
@@ -103,19 +95,9 @@ call plug#begin('~/.vim/bundle')
     " Plug 'mattn/vim-lsp-settings'
     " Plug 'prabirshrestha/asyncomplete.vim'
     " Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 call plug#end()
-
-" The following are commented out as they cause vim to behave a lot
-" differently from regular Vi. They are highly recommended though.
-"set showcmd		" Show (partial) command in status line.
-"set showmatch		" Show matching brackets.
-"set ignorecase		" Do case insensitive matching
-"set smartcase		" Do smart case matching
-"set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
-"set hidden             " Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes)
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -273,8 +255,8 @@ let g:airline_symbols_branch = '⎇'
 "****************************************
         "vim-fugitive config"
 "****************************************
-"set laststatus=2 " Always display the status line
-"set statusline+=%{fugitive#statusline()} "  Git Hotness
+" set laststatus=2 " Always display the status line
+" set statusline+=%{fugitive#statusline()} "  Git Hotness
 
 "****************************************
         "tagbar settings
@@ -432,7 +414,7 @@ let g:UltiSnipsEditSplit="vertical"
 "****************************************
             "YouCompleteMe"
 "****************************************
-let g:cm_server_python_interpreter='/usr/bin/python3'
+let g:ycm_server_python_interpreter='/usr/bin/python3'
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_enable_diagnostic_highlighting=0
 let g:ycm_add_preview_to_completeopt=0
@@ -455,6 +437,11 @@ let g:deoplete#enable_at_startup = 1
             "python-mode"
 "****************************************
 let g:pymode_rope = 0
+
+"****************************************
+            "coc.nvim"
+"****************************************
+let g:coc_node_path='/usr/bin/node'
 
 "****************************************
                "fzf"
@@ -591,7 +578,7 @@ endif
 "****************************************
 let g:asynctasks_term_pos = 'tab'
 
-let g:quickui_color_scheme = 'gruvbox'
+let g:quickui_color_scheme = 'papercol dark'
 let g:asyncrun_open = 6
 
 call quickui#menu#reset()
@@ -646,7 +633,7 @@ call quickui#menu#install('Help (&?)', [
 " context menu
 "----------------------------------------------------------------------
 let g:context_menu_k = [
-			\ ["&CopyHistory", 'reg', 'Display copy history'],
+			\ ["&CopyHistory\t:reg", 'reg', 'Display copy history'],
 			\ ["&NERDTree", 'NERDTreeToggle', 'toggle nerdtree'],
 			\ ['&Tagbar', 'Vista!!', 'toggle Vista'],
 			\ ['List &Buffer', 'call quickui#tools#list_buffer("e")', ],
