@@ -44,6 +44,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'rking/ag.vim'
     Plug 'chriskempson/base16-vim'
     Plug 'mattn/calendar-vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
     Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
