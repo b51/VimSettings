@@ -27,6 +27,18 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 "****************************************
+            "YouCompleteMe"
+"****************************************
+let g:ycm_server_python_interpreter='/usr/bin/python3'
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_enable_diagnostic_highlighting=0
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_filepath_completion_use_wirking_dir=1
+
+"****************************************
        "taglist config
 "****************************************
 if getfsize(".vimscript")>0
@@ -69,4 +81,3 @@ let g:Lf_PreviewInPopup = 1
 let g:Lf_ReverseOrder = 1
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
-
