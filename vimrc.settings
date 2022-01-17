@@ -39,37 +39,27 @@ endif
 "endif
 
 call plug#begin('~/.vim/bundle')
+    Plug 'rking/ag.vim'
+    Plug 'mattn/calendar-vim'
     Plug 'vim-scripts/Conque-Shell'
     Plug 'SirVer/ultisnips'
-    Plug 'rking/ag.vim'
-    Plug 'chriskempson/base16-vim'
-    Plug 'mattn/calendar-vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
     Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-    Plug 'tomasr/molokai'
-    Plug 'challenger-deep-theme/vim', { 'as': 'deep.vim' }
-    Plug 'NLKNguyen/papercolor-theme'
-    Plug 'joshdick/onedark.vim'
-    Plug 'ayu-theme/ayu-vim'
     Plug 'scrooloose/nerdtree'
-    Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'danro/rename.vim'
-    Plug 'vim-syntastic/syntastic'
     Plug 'godlygeek/tabular'
     Plug 'liuchengxu/vista.vim'
-    Plug 'vim-scripts/taglist.vim'
     Plug 'mbbill/undotree'
+    Plug 'tomasr/molokai'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'google/vim-codefmt'
     Plug 'tpope/vim-commentary'
-    Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'dracula/vim', { 'as': 'dracula.vim' }
     Plug 'easymotion/vim-easymotion'
     Plug 'tpope/vim-fugitive'
     Plug 'ludovicchabant/vim-gutentags'
@@ -83,22 +73,31 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-surround'
     Plug 'lervag/vimtex'
     Plug 'vimwiki/vimwiki'
-    Plug 'sickill/vim-monokai'
-    Plug 'rakr/vim-one'
-    Plug 'luochen1990/rainbow'
-    Plug 'kyoz/purify', { 'rtp': 'vim' }
     Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-    " Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
     Plug 'skywind3000/vim-quickui'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
-    " Plug 'prabirshrestha/vim-lsp'
-    " Plug 'mattn/vim-lsp-settings'
-    " Plug 'prabirshrestha/asyncomplete.vim'
-    " Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'luochen1990/rainbow'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+" The following are commented out as they cause vim to behave a lot
+" differently from regular Vi. They are highly recommended though.
+"set showcmd		" Show (partial) command in status line.
+"set showmatch		" Show matching brackets.
+"set ignorecase		" Do case insensitive matching
+"set smartcase		" Do smart case matching
+"set incsearch		" Incremental search
+"set autowrite		" Automatically save before commands like :next and :make
+"set hidden             " Hide buffers when they are abandoned
+"set mouse=a		" Enable mouse usage (all modes)
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -260,13 +259,6 @@ let g:airline_symbols_branch = '⎇'
 " set statusline+=%{fugitive#statusline()} "  Git Hotness
 
 "****************************************
-        "tagbar settings
-"****************************************
-" let g:tagbar_width=35
-" let g:tagbar_autofocus=1
-" nmap <F8> :TagbarToggle<CR>
-
-"****************************************
         "vista settings
 "****************************************
 function! NearestMethodOrFunction() abort
@@ -274,6 +266,7 @@ function! NearestMethodOrFunction() abort
 endfunction
 set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
 " e.g., more compact: ["▸ ", ""]
@@ -324,20 +317,6 @@ let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
 "****************************************
 let g:ag_working_path_mode="r"
 nmap <F2> :Ag! --noaffinity<space>
-
-"****************************************
-        "syntastic settings:
-"****************************************
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 1
-let g:syntastic_python_checkers = ['pyflakes']
-"nmap<F10> :SyntasticToggleMode<CR>
 
 "****************************************
         "markdown preview:
@@ -641,6 +620,7 @@ let g:context_menu_k = [
 			\ ["&Search in Project", 'Ag! --noaffinity "<cword>"'],
 			\ [ "--", ],
 			\ [ "&FixIt\t(YCM)", 'YcmCompleter FixIt'],
+			\ [ "&Align symbol\t\:Tabularize \/symbol", ':Tabularize'],
 			\ [ "--", ],
 			\ [ "Git Add\t", 'Git add .', 'Git add .'],
 			\ [ "Git Diff\t", 'Git diff', 'Git diff'],
@@ -672,6 +652,51 @@ endif
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
+
+"****************************************
+            "telescope.nvim"
+"****************************************
+" Find files using Telescope command-line sugar.
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" " Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+"****************************************
+           "nvim-treesitter"
+"****************************************
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "maintained",
+
+  -- Install languages synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing
+  -- ignore_install = { "javascript" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- list of language that will be disabled
+    -- disable = { "c", "rust" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
 
 "****************************************
             "normal"

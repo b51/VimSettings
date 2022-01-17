@@ -1,0 +1,72 @@
+"****************************************
+        " Archaic plugins
+"****************************************
+" -- themes --
+Plug 'chriskempson/base16-vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'deep.vim' }
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'joshdick/onedark.vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'dracula/vim', { 'as': 'dracula.vim' }
+Plug 'sickill/vim-monokai'
+Plug 'rakr/vim-one'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
+" ------------
+" use coc.nvim with lsp instead of YouCompleteMe
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer' }
+" use vista.vim instead of taglist
+Plug 'vim-scripts/taglist.vim'
+" use coc.nvim with lsp instead of syntastic
+Plug 'vim-syntastic/syntastic'
+" use nvim-treesitter instead of enhanced-hightlight
+Plug 'octol/vim-cpp-enhanced-highlight'
+" use coc.vim instead of vim-lsp
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+"****************************************
+       "taglist config
+"****************************************
+if getfsize(".vimscript")>0
+    source .vimscript
+endif
+
+let Tlist_Exit_OnlyWindow=1
+"let Tlist_Auto_Open=1
+let Tlist_File_Fold_Auto_Close=1
+let Tlist_Use_Right_Window=1
+nnoremap <silent> <F8> :TlistToggle<CR>
+
+"****************************************
+        "syntastic settings:
+"****************************************
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 1
+let g:syntastic_python_checkers = ['pyflakes']
+"nmap<F10> :SyntasticToggleMode<CR>
+
+"****************************************
+        "tagbar settings
+"****************************************
+let g:tagbar_width=35
+let g:tagbar_autofocus=1
+nmap <F8> :TagbarToggle<CR>
+
+"****************************************
+        "LeaderF settings:
+"****************************************
+let g:Lf_ShortcutF = '<C-P>'
+" let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_ReverseOrder = 1
+let g:Lf_WorkingDirectoryMode = 'AF'
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
+
