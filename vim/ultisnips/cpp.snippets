@@ -39,3 +39,8 @@ struct TracerT {
     }
 };
 endsnippet
+
+snippet cv_window "main function with glog & gflags"
+  cv::namedWindow("display", cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
+  cv::resizeWindow("display", 1920, 1080);
+endsnippet
