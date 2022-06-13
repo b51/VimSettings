@@ -40,7 +40,11 @@ struct TracerT {
 };
 endsnippet
 
-snippet cv_window "main function with glog & gflags"
+snippet cv_window "add a opencv window and resize it"
   cv::namedWindow("display", cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
   cv::resizeWindow("display", 1920, 1080);
+endsnippet
+
+snippet ffmpeg "ffmpeg image convert command"
+fmpeg -s 1920x1536 -i 14_43.yuv -pix_fmt yuyv422 a.jpg
 endsnippet
