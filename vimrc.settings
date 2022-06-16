@@ -108,7 +108,7 @@ endif
         "New file title
 "****************************************
 autocmd BufNewFile *.py call SetPythonHeader()
-autocmd BufNewFile *.hpp,*.cpp,,*.cc,*.[ch],*.sh,*.java call SetHeader()
+autocmd BufNewFile *.hpp,*.cpp,*.cc,*.[ch],*.sh,*.java call SetHeader()
 let $author_name = "{set name in ~/.vimrc line 62}"
 let $author_email = "{set mail in ~/.vimrc line 63}"
 let $default_license = "{set license in ~/.vimrc line 64}"
