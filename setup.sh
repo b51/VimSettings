@@ -10,10 +10,11 @@
 
 #!/bin/bash
 
-sudo apt update
-sudo apt install clang-format exuberant-ctags cscope global -y
+# sudo apt update
+brew install clang-format exuberant-ctags cscope
 cp vimrc.settings ~/.vimrc
 cp -rf vim ~/.vim
+cp -rf nvim.config/* ~/.config/nvim/
 cp clang-format.setting ~/.clang-format
 cd ~/.vim/bundle/
 vim +PlugInstall +qall
