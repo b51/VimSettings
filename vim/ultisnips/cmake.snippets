@@ -13,9 +13,9 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -fPIC")
+  set(CMAKE_CXX_FLAGS "\$\{CMAKE_CXX_FLAGS\} -O2 -fPIC")
 else(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fPIC")
+  set(CMAKE_CXX_FLAGS "\$\${CMAKE_CXX_FLAGS\} -g -O0 -fPIC")
 endif(CMAKE_BUILD_TYPE STREQUAL "Release")
 #########################################################################
 
@@ -28,24 +28,24 @@ find_package(glog REQUIRED)
 
 include_directories(
   include
-  ${OpenCV_INCLUDE_DIRS}
-  ${EIGEN3_INCLUDE_DIRS}
-  ${Pangolin_INCLUDE_DIRS}
-  ${YAML_CPP_INCLUDE_DIRS}
+  \$\{OpenCV_INCLUDE_DIRS\}
+  \$\{EIGEN3_INCLUDE_DIRS\}
+  \$\{Pangolin_INCLUDE_DIRS\}
+  \$\{YAML_CPP_INCLUDE_DIRS\}
 )
 
 ###########
 ## Build ##
 ###########
 
-add_executable(${PROJECT_NAME}
+add_executable(\$\{PROJECT_NAME\}
   src/main.cc
 )
 
-target_link_libraries(${PROJECT_NAME}
-  ${OpenCV_LIBRARIES}
-  ${YAML_CPP_LIBRARIES}
-  ${Pangolin_LIBRARIES}
+target_link_libraries(\$\{PROJECT_NAME\}
+  \$\{OpenCV_LIBRARIES\}
+  \$\{YAML_CPP_LIBRARIES\}
+  \$\{Pangolin_LIBRARIES\}
   glog::glog
   # -Wl,--no-whole-archive
 )
