@@ -56,6 +56,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'liuchengxu/vista.vim'
     Plug 'mbbill/undotree'
     Plug 'tomasr/molokai'
+    Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'google/vim-codefmt'
@@ -82,6 +83,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim'
+    Plug 'LukasPietzschmann/telescope-tabs'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'luochen1990/rainbow'
     Plug 'kyazdani42/nvim-web-devicons'
@@ -224,6 +226,7 @@ set cursorcolumn
 "****************************************
 " let g:airline_theme="hybridline"
 let g:airline_theme="simple"
+" let g:airline_theme="purify"
 set laststatus=2
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
@@ -369,14 +372,22 @@ let g:mwDefaultHighlightingPalette = 'extended'
 "****************************************
             "ultisnips"
 "****************************************
+" let $snipath = $HOME."/.vim/ultisnips"
+" let g:UltiSnipsSnippetDirectories = [$snipath]
+" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<c-m>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+
+"****************************************
+            "coc-ultisnips"
+"****************************************
 let $snipath = $HOME."/.vim/ultisnips"
-let g:UltiSnipsSnippetDirectories = [$snipath]
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-m>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" let g:snippets.userSnippetsDirectory = [$snipath]
+imap <c-l> <Plug>(coc-snippets-expand)
+xmap <leader>x  <Plug>(coc-convert-snippet)
 
 "****************************************
             "jedi-vim"
@@ -455,9 +466,9 @@ endif
 " colorscheme dracula
 
 "------ molokai ------
-colorscheme molokai
+" colorscheme molokai
 " let g:molokai_original = 1
-let g:rehash256 = 1
+" let g:rehash256 = 1
 
 "------ monokai ------
 " colorscheme monokai
@@ -466,10 +477,9 @@ let g:rehash256 = 1
 " ------ purify ------
 " colorscheme purify
 
-"------ one ------
-" let g:one_allow_italics = 1
-" colorscheme one
-" let g:airline_theme='one'
+" ------ onedark ------
+colorscheme onedark
+hi Normal ctermbg=black guibg=black
 
 " ------ challenger_deep ------
 " colorscheme challenger_deep
@@ -643,11 +653,14 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').resume()<cr>
+nnoremap <leader>ft <cmd>lua require('telescope-tabs').list_tabs()<cr>
 
 lua << EOF
 local actions = require("telescope.actions")
 require('telescope').setup{
   defaults = {
+    layout_strategy = 'vertical',
+    layout_config = { width = 120.0},
     -- Default configuration for telescope goes here:
     -- config_key = value,
     mappings = {
@@ -687,7 +700,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "cpp", "cpp", "cmake", "cuda",
     "lua", "python",
-    "markdown", "vim", "yaml", "json", "hjson",
+    "markdown", "vim", "yaml", "json", "hjson", "proto",
     },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
@@ -741,3 +754,4 @@ set history=1000
 set t_ut=
 set nofoldenable
 set encoding=utf-8
+set mouse=
