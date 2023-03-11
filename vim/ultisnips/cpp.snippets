@@ -48,3 +48,16 @@ endsnippet
 snippet ffmpeg "ffmpeg image convert command"
 fmpeg -s 1920x1536 -i 14_43.yuv -pix_fmt yuyv422 a.jpg
 endsnippet
+
+snippet mean "update mean and variance of data every iteration"
+// reference: Kalman Filter https://www.kalmanfilter.net/alphabeta.html
+//						https://www.quora.com/Is-it-possible-to-calculate-variance-using-old-variance-and-a-new-value
+  double mean = 0;
+  double variance = 0;
+	for (size_t i = 0; i < data.size(); i++) {
+	  int n_data = i + 1;
+		mean += (1.0 / n_data) * (data[i] - mean);
+		variance = (1.0 * n_data / (n_data + 1.0)) *
+							(variance + (data[i] - mean) * (data[i] - mean) / (n_data + 1.0));
+	}
+endsnippet
