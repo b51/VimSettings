@@ -1,4 +1,20 @@
 {
   "snippets.userSnippetsDirectory": "~/.vim/ultisnips",
-  "suggest.noselect": true
+  "suggest.noselect": true,
+
+  "list.normalMappings": {
+    "<C-j>": "normal:j",
+    "<C-k>": "normal:k"
+  },
+
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/ccls"
+      }
+    }
+  }
 }

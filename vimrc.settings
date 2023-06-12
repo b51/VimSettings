@@ -42,7 +42,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'rking/ag.vim'
     Plug 'mattn/calendar-vim'
     Plug 'vim-scripts/Conque-Shell'
-    Plug 'SirVer/ultisnips'
+    " Plug 'SirVer/ultisnips'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
@@ -88,6 +88,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'luochen1990/rainbow'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'dhananjaylatkar/cscope_maps.nvim' " cscope keymaps
 call plug#end()
 
 " The following are commented out as they cause vim to behave a lot
@@ -193,15 +194,15 @@ function! LoadCscope()
     cs add $CSCOPE_DB
   endif
 endfunction
-au BufEnter /* call LoadCscope()
+" au BufEnter /* call LoadCscope()
 
-nmap <Leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <Leader>I :cs find i <C-R>=expand("<cfile>")<CR><CR>
+" nmap <Leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+" nmap <Leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+" nmap <Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" nmap <Leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+" nmap <Leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+" nmap <Leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+" nmap <Leader>I :cs find i <C-R>=expand("<cfile>")<CR><CR>
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 nnoremap <C-]> g<C-]>
 
@@ -389,6 +390,54 @@ let $snipath = $HOME."/.vim/ultisnips"
 imap <c-l> <Plug>(coc-snippets-expand)
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" nmap <Leader>s <Plug>(coc-references)
+
+"****************************************
+            "cscope_maps"
+"****************************************
+lua << EOF
+  local work_path = os.getenv("PWD")
+  local f = io.popen('find "'..work_path..'" -name cscope.out')
+
+  local cscope_file = nil
+  for file in f:lines() do                         --Loop through all files
+    cscope_file = file
+  end
+
+  require("cscope_maps").setup{
+    disable_maps = true,
+    skip_input_prompt = true,
+    vim.api.nvim_set_keymap(
+      "n",
+      "<leader>s",
+      [[<cmd>lua require('cscope_maps').cscope_prompt('s', vim.fn.expand("<cword>"))<cr>]],
+      { noremap = true, silent = true }
+    ),
+    cscope = {
+      -- location of cscope db file
+      db_file = cscope_file,
+      -- cscope executable
+      exec = "cscope", -- "cscope" or "gtags-cscope"
+      -- choose your fav picker
+      picker = "telescope", -- "telescope", "fzf-lua" or "quickfix"
+      -- "true" does not open picker for single result, just JUMP
+      skip_picker_for_single_result = false, -- "false" or "true"
+      -- these args are directly passed to "cscope -f <db_file> <args>"
+      db_build_cmd_args = { "-bqkv" },
+      -- statusline indicator, default is cscope executable
+      statusline_indicator = nil,
+    },
+  }
+EOF
+
 "****************************************
             "jedi-vim"
 "****************************************
@@ -404,7 +453,7 @@ let g:deoplete#enable_at_startup = 1
 "****************************************
 let g:pymode_rope = 0
 let g:pymode_options_max_line_length = 120
-let g:pymode_lint_ignore = ["E501", "W0611"]
+let g:pymode_lint_ignore = ["E501", "W0611", "E231", "E116"]
 
 "****************************************
             "coc.nvim"
