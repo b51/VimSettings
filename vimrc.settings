@@ -302,6 +302,9 @@ let g:Lf_PreviewInPopup = 1
 let g:Lf_ReverseOrder = 1
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
+let g:Lf_WildIgnore = {
+    \ 'dir': ['.git', '.ccls-cache'],
+    \ }
 
 "****************************************
         "ag settings:
@@ -478,7 +481,7 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 let g:gutentags_ctags_exclude = [
-\  '*.git', '*.svn', '*.hg',
+\  '*.git', '*.svn', '*.hg', '*.ccls-cache',
 \  'cache', 'build', 'dist', 'bin', 'node_modules', 'bower_components',
 \  '*-lock.json',  '*.lock',
 \  '*.min.*',
