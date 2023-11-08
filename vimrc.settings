@@ -408,6 +408,9 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 "****************************************
 lua << EOF
   local work_path = os.getenv("PWD")
+  if (work_path == os.getenv("HOME")) then
+    return
+  end
   local f = io.popen('find "'..work_path..'" -name cscope.out')
 
   local cscope_file = nil
