@@ -8,6 +8,16 @@ int main(int argc, char* argv[]) {
 
   google::InitGoogleLogging(argv[0]);
   google::ParseCommandLineFlags(&argc, &argv, true);
+
+  std::string log_info_file = FLAGS_log_dir + "INFO_";
+  std::string log_warning_file = FLAGS_log_dir + "WARNING_";
+  std::string log_error_file = FLAGS_log_dir + "ERROR_";
+  std::string log_fatal_file = FLAGS_log_dir + "FATAL_";
+  
+  google::SetLogDestination(google::GLOG_INFO, log_info_file.c_str());
+  google::SetLogDestination(google::GLOG_WARNING, log_warning_file.c_str());
+  google::SetLogDestination(google::GLOG_ERROR, log_error_file.c_str());
+  google::SetLogDestination(google::GLOG_FATAL, log_fatal_file.c_str());
 }
 endsnippet
 
