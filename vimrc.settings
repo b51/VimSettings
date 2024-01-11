@@ -89,6 +89,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ryanoasis/vim-devicons'
     Plug 'dhananjaylatkar/cscope_maps.nvim' " cscope keymaps
+    Plug 'echasnovski/mini.files'
 call plug#end()
 
 " The following are commented out as they cause vim to behave a lot
@@ -459,7 +460,7 @@ let g:deoplete#enable_at_startup = 1
 "****************************************
 let g:pymode_rope = 0
 let g:pymode_options_max_line_length = 120
-let g:pymode_lint_ignore = ["E501", "W0611", "E231", "E116"]
+let g:pymode_lint_ignore = ["E501", "W0611", "W0612", "E231", "E116"]
 
 "****************************************
             "coc.nvim"
@@ -628,7 +629,7 @@ call quickui#menu#install('&Tools', [
 			\ ])
 
 call quickui#menu#install('&Plugin', [
-			\ ["&NERDTree\t<space>tn", 'NERDTreeToggle', 'toggle nerdtree'],
+			\ ["&FileLists\t<space>tn", 'lua MiniFiles.open()', 'toggle nerdtree'],
 			\ ['&Tagbar', 'Vista!!', 'toggle Vista'],
 			\ ["-"],
 			\ ["&Display Calendar", "Calendar", "display a calender"],
@@ -656,12 +657,11 @@ call quickui#menu#install('Help (&?)', [
 "----------------------------------------------------------------------
 let g:context_menu_k = [
 			\ ["&CopyHistory\t:reg", 'reg', 'Display copy history'],
-			\ ["&NERDTree", 'NERDTreeToggle', 'toggle nerdtree'],
+			\ ["&FileLists", 'lua MiniFiles.open()', 'toggle nerdtree'],
 			\ ['&Tagbar', 'Vista!!', 'toggle Vista'],
 			\ ['List &Buffer', 'call quickui#tools#list_buffer("e")', ],
 			\ ["&Search in Project", 'Ag! --noaffinity "<cword>"'],
 			\ [ "--", ],
-			\ [ "&FixIt\t(YCM)", 'YcmCompleter FixIt'],
 			\ [ "&Align symbol\t\:Tabularize \/symbol", ':Tabularize'],
 			\ [ "--", ],
 			\ [ "Git Add\t", 'Git add .', 'Git add .'],
@@ -687,7 +687,7 @@ let g:context_menu_k = [
 " hotkey
 "----------------------------------------------------------------------
 nnoremap <silent><leader><space> :call quickui#menu#open()<cr>
-nnoremap <silent>K :call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>
+nnoremap <silent>F :call quickui#tools#clever_context('k', g:context_menu_k, {})<cr>
 if has('gui_running') || has('nvim')
 	noremap <c-f10> :call MenuHelp_TaskList()<cr>
 endif
@@ -780,6 +780,17 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+EOF
+
+"****************************************
+            "mini-files"
+"****************************************
+lua <<EOF
+  require("mini.files").setup({
+    windows= {
+      preview = true,
+    },
+  })
 EOF
 
 "****************************************
