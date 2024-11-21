@@ -47,7 +47,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'junegunn/fzf.vim'
     Plug 'davidhalter/jedi-vim'
     Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
     Plug 'scrooloose/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -55,10 +55,22 @@ call plug#begin('~/.vim/bundle')
     Plug 'godlygeek/tabular'
     Plug 'liuchengxu/vista.vim'
     Plug 'mbbill/undotree'
+
+    " ******* color scheme *********
     Plug 'tomasr/molokai'
+    Plug 'ku1ik/vim-monokai'
     Plug 'joshdick/onedark.vim'
+    Plug 'kyoz/purify', {'rtp': 'vim'}
+    Plug 'rakr/vim-one'
+    Plug 'folke/tokyonight.nvim'
+    Plug 'NLKNguyen/papercolor-theme'
+    Plug 'catppuccin/nvim'
+    " ******************************
+
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    " Plug 'itchyny/lightline.vim'
+
     Plug 'google/vim-codefmt'
     Plug 'tpope/vim-commentary'
     Plug 'easymotion/vim-easymotion'
@@ -85,11 +97,15 @@ call plug#begin('~/.vim/bundle')
     Plug 'nvim-telescope/telescope-fzf-native.nvim'
     Plug 'LukasPietzschmann/telescope-tabs'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'luochen1990/rainbow'
+    Plug 'HiPhish/rainbow-delimiters.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ryanoasis/vim-devicons'
     Plug 'dhananjaylatkar/cscope_maps.nvim' " cscope keymaps
     Plug 'echasnovski/mini.files'
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+    Plug 'chiphogg/vim-prototxt'
+    Plug 'wookayin/semshi', { 'do': ':UpdateRemotePlugins' }
+    Plug 'williamboman/mason.nvim'
 call plug#end()
 
 " The following are commented out as they cause vim to behave a lot
@@ -165,19 +181,16 @@ function! SetHeader()
 endfunc
 
 function! SetPythonHeader()
-  call setline(1,"\#!/usr/bin/env python")
-  call append(line("."), "\#########################################################################")
-  call append(line(".")+1, "\#")
-  call append(line(".")+2, "\#              Author: ".$author_name)
-  call append(line(".")+3, "\#                Mail: ".$author_email)
-  call append(line(".")+4, "\#            FileName: ".expand("%:t"))
-  call append(line(".")+5, "\#")
-  call append(line(".")+6, "\#          Created On: ".strftime("%c"))
-  call append(line(".")+7, "\#     Licensed under The ".$default_license." License [see LICENSE for details]")
-  call append(line(".")+8, "\#")
-  call append(line(".")+9, "\#########################################################################")
-  call append(line(".")+10, "")
-  "autocmd BufEnter * normal G
+  call setline(1,"\#!/usr/bin/env python3")
+  call append(line("."), "\"\"\"")
+  call append(line(".")+1, "              Author: ".$author_name)
+  call append(line(".")+2, "                Mail: ".$author_email)
+  call append(line(".")+3, "            FileName: ".expand("%:t"))
+  call append(line(".")+4, "")
+  call append(line(".")+5, "          Created On: ".strftime("%c"))
+  call append(line(".")+6, "     Licensed under The ".$default_license." License [see LICENSE for details]")
+  call append(line(".")+7, "\"\"\"")
+  " autocmd BufEnter * normal G
 endfunc
 
 "****************************************
@@ -228,7 +241,6 @@ set cursorcolumn
 "****************************************
 " let g:airline_theme="hybridline"
 let g:airline_theme="simple"
-" let g:airline_theme="purify"
 set laststatus=2
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
@@ -298,13 +310,13 @@ nnoremap <silent> <F8> :Vista!!<CR>
         "LeaderF settings:
 "****************************************
 let g:Lf_ShortcutF = '<C-P>'
-" let g:Lf_WindowPosition = 'popup'
+let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_ReverseOrder = 1
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
 let g:Lf_WildIgnore = {
-    \ 'dir': ['.git', '.ccls-cache'],
+    \ 'dir': ['.git', '.ccls-cache', '__pycache__'],
     \ }
 
 "****************************************
@@ -460,12 +472,12 @@ let g:deoplete#enable_at_startup = 1
 "****************************************
 let g:pymode_rope = 0
 let g:pymode_options_max_line_length = 120
-let g:pymode_lint_ignore = ["E501", "W0611", "W0612", "E231", "E116"]
+let g:pymode_lint_ignore = ["E501", "W0611", "W0612", "E231", "E116", "E402", "C901"]
 
 "****************************************
             "coc.nvim"
 "****************************************
-let g:coc_node_path='/usr/bin/node'
+let g:coc_node_path='/usr/local/bin/node'
 
 "****************************************
                "fzf"
@@ -527,17 +539,31 @@ endif
 " colorscheme molokai
 " let g:molokai_original = 1
 " let g:rehash256 = 1
+" hi Normal ctermbg=black guibg=black
 
 "------ monokai ------
 " colorscheme monokai
 " highlight Normal ctermbg=None
+" hi Normal ctermbg=black guibg=black
 
 " ------ purify ------
 " colorscheme purify
+" let g:lightline = {
+"   \ 'colorscheme': 'purify',
+"   \ }
+
+"------ one ------
+" colorscheme one
+" set background=dark
+" let g:one_allow_italics = 1
+" let g:airline_theme='one'
 
 " ------ onedark ------
-colorscheme onedark
-hi Normal ctermbg=black guibg=black
+" let g:onedark_terminal_italics = 1
+" colorscheme onedark
+" let g:lightline = {
+"   \ 'colorscheme': 'onedark',
+"   \ }
 
 " ------ challenger_deep ------
 " colorscheme challenger_deep
@@ -546,6 +572,19 @@ hi Normal ctermbg=black guibg=black
 " set t_Co=256
 " set background=dark
 " colorscheme PaperColor
+
+" colorscheme vividchalk
+
+" ------ tokyonight ------
+" colorscheme tokyonight
+colorscheme tokyonight-night
+" colorscheme tokyonight-storm
+" colorscheme tokyonight-day
+" colorscheme tokyonight-moon
+
+" ------ catppuccin ------
+" colorscheme catppuccin
+" hi Normal ctermbg=black guibg=black
 
 "****************************************
       "vim-latex-live-preview"
@@ -565,15 +604,15 @@ nnoremap <F5> :UndotreeToggle<CR>
 "****************************************
             "rainbow"
 "****************************************
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-\   'separately': {
-\       'cmake': 0,
-\       'vimwiki': 0,
-\       'markdown': 0,
-\       'gitcommit': 0,
-\   }
-\}
+" let g:rainbow_active = 1
+" let g:rainbow_conf = {
+" \   'separately': {
+" \       'cmake': 0,
+" \       'vimwiki': 0,
+" \       'markdown': 0,
+" \       'gitcommit': 0,
+" \   }
+" \}
 
 "****************************************
             "asyncomplete"
@@ -757,7 +796,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "cpp", "cpp", "cmake", "cuda",
     "lua", "python",
-    "markdown", "vim", "yaml", "json", "hjson", "proto",
+    "markdown", "vim", "yaml", "json", "hjson", "proto", "xml",
     },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
@@ -793,6 +832,10 @@ lua <<EOF
   })
 EOF
 
+lua <<EOF
+  require("mason").setup()
+EOF
+
 "****************************************
             "normal"
 "****************************************
@@ -812,7 +855,7 @@ set autochdir
 set showcmd
 set smartcase
 set smartindent
-set pastetoggle=<F12>
+" set pastetoggle=<F12>
 let g:indentLine_char = '︙'
 set tags=./.tags;,.tags
 set runtimepath^=~/.vim/bundle/ag.vim
