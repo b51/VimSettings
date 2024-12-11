@@ -2,7 +2,8 @@ snippet cmakeinit "init a CMakelists.txt"
 cmake_minimum_required(VERSION 3.2)
 project(${1:helloworld})
 
-add_definitions(-std=c++11)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #########################################################################
@@ -12,31 +13,39 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -fPIC")
+  set(CMAKE_CXX_FLAGS "\$\{CMAKE_CXX_FLAGS\} -O2 -fPIC")
 else(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fPIC")
+  set(CMAKE_CXX_FLAGS "\$\${CMAKE_CXX_FLAGS\} -g -O0 -fPIC")
 endif(CMAKE_BUILD_TYPE STREQUAL "Release")
 #########################################################################
 
 find_package(OpenCV REQUIRED)
 find_package(Eigen3 REQUIRED)
+find_package(yaml-cpp REQUIRED)
+find_package(Sophus REQUIRED)
+find_package(Pangolin REQUIRED)
 find_package(glog REQUIRED)
 
 include_directories(
-  ${OpenCV_INCLUDE_DIRS}
-  ${EIGEN3_INCLUDE_DIRS}
+  include
+  \$\{OpenCV_INCLUDE_DIRS\}
+  \$\{EIGEN3_INCLUDE_DIRS\}
+  \$\{Pangolin_INCLUDE_DIRS\}
+  \$\{YAML_CPP_INCLUDE_DIRS\}
 )
 
 ###########
 ## Build ##
 ###########
 
-add_executable(${PROJECT_NAME}
+add_executable(\$\{PROJECT_NAME\}
   src/main.cc
 )
 
-target_link_libraries(${PROJECT_NAME}
-  ${OpenCV_LIBRARIES}
+target_link_libraries(\$\{PROJECT_NAME\}
+  \$\{OpenCV_LIBRARIES\}
+  \$\{YAML_CPP_LIBRARIES\}
+  \$\{Pangolin_LIBRARIES\}
   glog::glog
   # -Wl,--no-whole-archive
 )

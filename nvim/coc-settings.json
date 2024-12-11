@@ -1,0 +1,23 @@
+{
+  "snippets.userSnippetsDirectory": "~/.vim/ultisnips",
+  "suggest.noselect": true,
+
+  "list.normalMappings": {
+    "<C-j>": "normal:j",
+    "<C-k>": "normal:k"
+  },
+
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/ccls"
+      },
+      "ignoredRootPaths": ["~"]
+    }
+  },
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/17.0.3/clangd_17.0.3/bin/clangd",
+  "snippets.ultisnips.pythonPrompt": false
+}
