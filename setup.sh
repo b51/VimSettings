@@ -23,3 +23,7 @@ git clone https://gitlab.com/dwt1/shell-color-scripts
 cd shell-color-scripts
 sudo make install
 cd -
+
+# CocInstall coc-snippets
+# CocInstall coc-jedi
+# CocInstall coc-clangd

@@ -1,5 +1,5 @@
 {
-  "snippets.userSnippetsDirectory": "~/.vim/ultisnips",
+  "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips",
   "suggest.noselect": true,
 
   "list.normalMappings": {
