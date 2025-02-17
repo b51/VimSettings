@@ -53,6 +53,15 @@ vim.o.mouse = ""
 vim.o.cursorcolumn = true
 vim.o.incsearch = true
 
+--**************************************--
+--            "quickui"
+--**************************************--
+vim.g.asynctasks_term_pos = 'tab'
+-- vim.g.quickui_color_scheme = 'papercol dark'
+vim.g.quickui_color_scheme = 'gruvbox'
+vim.g.asyncrun_open = 6
+          
+
 -- Add header to cc & py files
 vim.cmd([[
   " Uncomment the following to have Vim jump to the last position when
@@ -293,7 +302,7 @@ vim.cmd([[
   "****************************************
               "coc-ultisnips"
   "****************************************
-  let $snipath = $HOME."/.vim/ultisnips"
+  let $snipath = $HOME."/.config/nvim/ultisnips"
   " let g:snippets.userSnippetsDirectory = [$snipath]
   imap <c-l> <Plug>(coc-snippets-expand)
   xmap <leader>x  <Plug>(coc-convert-snippet)
@@ -651,7 +660,7 @@ require("lazy").setup({
             -- "true" does not open picker for single result, just JUMP
             skip_picker_for_single_result = false, -- "false" or "true"
             -- these args are directly passed to "cscope -f <db_file> <args>"
-            db_build_cmd_args = { "-bqkv" },
+            db_build_cmd = { args = { "-bqkv" } },
             -- statusline indicator, default is cscope executable
             statusline_indicator = nil,
           },
