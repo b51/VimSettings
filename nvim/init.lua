@@ -528,6 +528,7 @@ require("lazy").setup({
         { "<leader>hg", function() Snacks.lazygit() end, desc = "Lazygit" },
         { "<leader>hl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
         { "<leader>hd", function() Snacks.dashboard() end, desc = "dashboard" },
+        { "<leader>hr", function() Snacks.picker.recent() end, desc = "Recent" },
       },
     },
 
