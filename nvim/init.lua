@@ -511,7 +511,7 @@ require("lazy").setup({
               enabled = function()
                 return Snacks.git.get_root() ~= nil
               end,
-              cmd = "hub status --short --branch --renames",
+              cmd = "git --no-pager diff --stat -B -M -C",
               height = 5,
               padding = 1,
               ttl = 5 * 60,
@@ -615,11 +615,8 @@ require("lazy").setup({
     {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-      build = "cd app && yarn install",
-      init = function()
-        vim.g.mkdp_filetypes = { "markdown" }
-      end,
       ft = { "markdown" },
+      build = ":call mkdp#util#install()",
     },
 
     -- ******** cscope_maps **********
