@@ -318,6 +318,7 @@ vim.cmd([[
   let g:pymode_rope = 0
   let g:pymode_options_max_line_length = 120
   let g:pymode_lint_ignore = ["E501", "W0611", "W0612", "E231", "E116", "E402", "C901"]
+  let g:pymode_breakpoint_bind = '<leader>k'
 
   "****************************************
               "coc.nvim"
@@ -851,6 +852,64 @@ require("lazy").setup({
       end
     },
 
+    {
+      "folke/todo-comments.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      opts = {
+        highlight = {
+          comments_only = false
+        },
+      },
+    },
+
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' }, -- if you use standalone mini plugins
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+      ---@module 'render-markdown'
+      ---@type render.md.UserConfig
+      opts = {
+        file_types = { 'markdown', 'vimwiki' },
+        vim.treesitter.language.register('markdown', 'vimwiki'),
+      },
+    },
+    {
+      "folke/noice.nvim",
+      event = "VeryLazy",
+      opts = {
+        lsp = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        },
+        -- add any options here
+      },
+      dependencies = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        "MunifTanjim/nui.nvim",
+        -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        "rcarriga/nvim-notify",
+        }
+    },
+    {
+      "folke/which-key.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      },
+      keys = {
+        {
+          "<leader>]",
+          function()
+            require("which-key").show({ global = false })
+          end,
+          desc = "Buffer Local Keymaps (which-key)",
+        },
+      },
+    },
   },
 
   -- Configure any other settings here. See the documentation for more details.
