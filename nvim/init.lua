@@ -430,11 +430,13 @@ require("lazy").setup({
     { 'vim-airline/vim-airline-themes' },
 
     {
-      'scrooloose/nerdtree', dependencies = { 'Xuyuanp/nerdtree-git-plugin', 'tiagofumo/vim-nerdtree-syntax-highlight' }
+      'scrooloose/nerdtree', dependencies = {
+        'Xuyuanp/nerdtree-git-plugin',
+        'tiagofumo/vim-nerdtree-syntax-highlight'
     },
 
-    { 'Xuyuanp/nerdtree-git-plugin', },
-    { 'tiagofumo/vim-nerdtree-syntax-highlight', },
+    -- { 'Xuyuanp/nerdtree-git-plugin', },
+    -- { 'tiagofumo/vim-nerdtree-syntax-highlight', },
     { 'liuchengxu/vista.vim', },
     { 'Yggdroot/LeaderF', build = ':LeaderfInstallCExtension', },
     { 'inkarkat/vim-mark', dependencies = { 'inkarkat/vim-ingo-library' }, },
@@ -558,7 +560,7 @@ require("lazy").setup({
         require'nvim-treesitter.configs'.setup({
           -- A list of parser names, or "all" (the listed parsers MUST always be installed)
           ensure_installed = {"cpp", "cpp", "cmake", "cuda",
-                              "lua", "python",
+                              "lua", "python", "regex",
                               "markdown", "vim", "yaml", "json", "hjson", "proto", "xml"},
 
           -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -890,7 +892,7 @@ require("lazy").setup({
         --   `nvim-notify` is only needed, if you want to use the notification view.
         --   If not available, we use `mini` as the fallback
         "rcarriga/nvim-notify",
-        }
+      }
     },
     {
       "folke/which-key.nvim",
