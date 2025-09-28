@@ -861,6 +861,20 @@ require("lazy").setup({
         highlight = {
           comments_only = false
         },
+        keywords = {
+          EMERG = {
+            -- icon = "󱘏 ", -- icon used for the sign, and in search results
+            icon = "󱓞 ", -- icon used for the sign, and in search results
+            color = "error", -- can be a hex color, or a named color (see below)
+            alt = { "EMER", "EMERGY", "EMERGENCY", }, -- a set of other keywords that all map to this keywords
+            -- signs = false, -- configure signs for some keywords individually
+          },
+          ADDITION = {
+            icon = " ",
+            color = "warning", -- can be a hex color, or a named color (see below)
+            alt = { "ADDI", "ADDIT", },
+          },
+        },
       },
     },
 
@@ -911,6 +925,19 @@ require("lazy").setup({
           desc = "Buffer Local Keymaps (which-key)",
         },
       },
+    },
+    {
+      'MagicDuck/grug-far.nvim',
+      -- Note (lazy loading): grug-far.lua defers all it's requires so it's lazy by default
+      -- additional lazy config to defer loading is not really needed...
+      config = function()
+        -- optional setup call to override plugin options
+        -- alternatively you can set options with vim.g.grug_far = { ... }
+        require('grug-far').setup({
+          -- options, see Configuration section below
+          -- there are no required options atm
+        });
+      end
     },
   },
 
