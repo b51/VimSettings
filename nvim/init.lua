@@ -440,6 +440,7 @@ require("lazy").setup({
       'scrooloose/nerdtree', dependencies = {
         'Xuyuanp/nerdtree-git-plugin',
         'tiagofumo/vim-nerdtree-syntax-highlight'
+      }
     },
 
     -- { 'Xuyuanp/nerdtree-git-plugin', },
