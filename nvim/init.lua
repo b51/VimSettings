@@ -195,6 +195,9 @@ vim.cmd([[
   let g:airline_right_sep = '◀'
   let g:airline_symbols_branch = '⎇'
 
+  let g:airline_inactive_collapse = 0
+  let g:airline_section_b = '󰯌 %{winnr()}'
+
   "****************************************
           "vista settings
   "****************************************
