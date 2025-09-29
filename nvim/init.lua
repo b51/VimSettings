@@ -324,6 +324,10 @@ vim.cmd([[
               "coc.nvim"
   "****************************************
   let g:coc_node_path='/usr/local/bin/node'
+  xmap <Leader>fl <Plug>(coc-format-selected)
+  nmap <Leader>fl <Plug>(coc-format-selected)
+  nmap <silent> <C-s> <Plug>(coc-range-select)
+  xmap <silent> <C-s> <Plug>(coc-range-select)
 
   "****************************************
                  "fzf"
@@ -890,6 +894,7 @@ require("lazy").setup({
         vim.treesitter.language.register('markdown', 'vimwiki'),
       },
     },
+
     {
       "folke/noice.nvim",
       event = "VeryLazy",
@@ -908,6 +913,7 @@ require("lazy").setup({
         "rcarriga/nvim-notify",
       }
     },
+
     {
       "folke/which-key.nvim",
       event = "VeryLazy",
@@ -926,6 +932,7 @@ require("lazy").setup({
         },
       },
     },
+
     {
       'MagicDuck/grug-far.nvim',
       -- Note (lazy loading): grug-far.lua defers all it's requires so it's lazy by default
