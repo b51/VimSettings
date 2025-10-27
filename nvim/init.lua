@@ -53,14 +53,83 @@ vim.o.mouse = ""
 vim.o.cursorcolumn = true
 vim.o.incsearch = true
 
---**************************************--
---            "quickui"
---**************************************--
-vim.g.asynctasks_term_pos = 'tab'
--- vim.g.quickui_color_scheme = 'papercol dark'
-vim.g.quickui_color_scheme = 'gruvbox'
-vim.g.asyncrun_open = 6
-          
+-- ==========================================
+--  Auto Add Header From Templates
+-- ==========================================
+
+-- Path to templates folder
+local template_dir = vim.fn.stdpath("config") .. "/templates/"
+
+-- Helper: read template file content
+local function read_template(path)
+  local file = io.open(path, "r")
+  if not file then return nil end
+  local content = file:read("*a")
+  file:close()
+  return content
+end
+
+-- Helper: replace placeholders in template
+local function expand_template(content)
+  local author_name = "b51"
+  local author_email = "b51live@gmail.com"
+  local default_license = "MIT"
+  local filename = vim.fn.expand("%:t")
+  local date = vim.fn.strftime("%c")
+  local license = default_license
+  local placeholders = {
+    ["$author_name"] = author_name,
+    ["$author_email"] = author_email,
+    ["$filename"] = filename,
+    ["$date"] = date,
+    ["$default_license"] = default_license,
+  }
+  for key, value in pairs(placeholders) do
+    content = content:gsub(key, value)
+  end
+  return vim.split(content, "\n", { trimempty = false })
+end
+
+-- Main function to insert template
+local function insert_header_from_template()
+  local ext = vim.fn.expand("%:e")
+  local file = vim.fn.expand("%:p")
+
+  local map = {
+    sh = "sh_temp.txt",
+    py = "py_temp.txt",
+    c = "c_temp.c",
+    cc = "cxx_temp.cc",
+    cpp = "cxx_temp.txt",
+    h = "cxx_temp.txt",
+  }
+
+  local template_name = map[ext] or "default_header.txt"
+  local template_path = template_dir .. template_name
+
+  local content = read_template(template_path)
+  if not content then
+    vim.notify("No template found for " .. ext, vim.log.levels.WARN)
+    return
+  end
+
+  local expanded_lines = expand_template(content)
+  vim.api.nvim_buf_set_lines(0, 0, 0, false, expanded_lines)
+  vim.api.nvim_buf_set_lines(0, #expanded_lines, #expanded_lines + 1, false, {})
+
+  -- Make scripts executable automatically
+  if ext == "sh" or ext == "py" then
+    vim.cmd("silent !chmod +x " .. vim.fn.shellescape(file))
+  end
+end
+
+-- Auto insert header when creating new files
+vim.api.nvim_create_augroup("AutoTemplateHeader", { clear = true })
+vim.api.nvim_create_autocmd("BufNewFile", {
+  group = "AutoTemplateHeader",
+  pattern = { "*.cc", "*.cpp", "*.h", "*.sh", "*.py" },
+  callback = insert_header_from_template,
+})
 
 -- Add header to cc & py files
 vim.cmd([[
@@ -69,75 +138,6 @@ vim.cmd([[
   if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
   endif
-
-  "****************************************
-          "New file title
-  "****************************************
-  autocmd BufNewFile *.py call SetPythonHeader()
-  autocmd BufNewFile *.hpp,*.cpp,*.cc,*.[ch],*.sh,*.java call SetHeader()
-  let $author_name = "{set name in ~/.config/nvim/init.lua line 69}"
-  let $author_email = "{set mail in ~/.config/nvim/init.lua line 70}"
-  let $default_license = "{set license in ~/.config/nvim/init.lua line 71}"
-  
-  function! SetHeader()
-    "*.sh
-    if &filetype == 'sh'
-      call setline(1,"\#########################################################################")
-      call append(line("."), "\#")
-      call append(line(".")+1, "\#              Author: ".$author_name)
-      call append(line(".")+2, "\#                Mail: ".$author_email)
-      call append(line(".")+3, "\#            FileName: ".expand("%:t"))
-      call append(line(".")+4, "\#")
-      call append(line(".")+5, "\#          Created On: ".strftime("%c"))
-      call append(line(".")+6, "\#")
-      call append(line(".")+7, "\#########################################################################")
-      call append(line(".")+8, "")
-      call append(line(".")+9, "\#!/bin/bash")
-      call append(line(".")+10, "")
-    else
-      call setline(1,"/*************************************************************************")
-      call append(line("."), "\*")
-      call append(line(".")+1, "\*              Author: ".$author_name)
-      call append(line(".")+2, "\*                Mail: ".$author_email)
-      call append(line(".")+3, "\*            FileName: ".expand("%:t"))
-      call append(line(".")+4, "\*")
-      call append(line(".")+5, "\*          Created On: ".strftime("%c"))
-      call append(line(".")+6, "\*     Licensed under The ".$default_license." License [see LICENSE for details]")
-      call append(line(".")+7, "\*")
-      call append(line(".")+8, "************************************************************************/")
-      call append(line(".")+9, "")
-    endif
-    "*.cpp
-    if &filetype == 'cpp'
-      call append(line(".")+10, "#include <iostream>")
-      call append(line(".")+11, "")
-    endif
-    "*.cc
-    if &filetype == 'cc'
-      call append(line(".")+10, "#include <iostream>")
-      call append(line(".")+11, "")
-    endif
-    "*.c
-    if &filetype == 'c'
-      call append(line(".")+10, "#include <stdio.h>")
-      call append(line(".")+11, "")
-    endif
-    "Goto end of file
-    "autocmd BufEnter * normal G
-  endfunc
-  
-  function! SetPythonHeader()
-    call setline(1,"\#!/usr/bin/env python3")
-    call append(line("."), "\"\"\"")
-    call append(line(".")+1, "              Author: ".$author_name)
-    call append(line(".")+2, "                Mail: ".$author_email)
-    call append(line(".")+3, "            FileName: ".expand("%:t"))
-    call append(line(".")+4, "")
-    call append(line(".")+5, "          Created On: ".strftime("%c"))
-    call append(line(".")+6, "     Licensed under The ".$default_license." License [see LICENSE for details]")
-    call append(line(".")+7, "\"\"\"")
-    " autocmd BufEnter * normal G
-  endfunc
 
   "****************************************
           "cscope config
