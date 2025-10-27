@@ -77,12 +77,15 @@ local function expand_template(content)
   local filename = vim.fn.expand("%:t")
   local date = vim.fn.strftime("%c")
   local license = default_license
+  local year = os.date("%Y")
+
   local placeholders = {
     ["$author_name"] = author_name,
     ["$author_email"] = author_email,
     ["$filename"] = filename,
     ["$date"] = date,
     ["$default_license"] = default_license,
+    ["$year"] = year,
   }
   for key, value in pairs(placeholders) do
     content = content:gsub(key, value)
@@ -96,12 +99,12 @@ local function insert_header_from_template()
   local file = vim.fn.expand("%:p")
 
   local map = {
-    sh = "sh_temp.txt",
-    py = "py_temp.txt",
+    sh = "sh_temp.sh",
+    py = "py_temp.py",
     c = "c_temp.c",
     cc = "cxx_temp.cc",
-    cpp = "cxx_temp.txt",
-    h = "cxx_temp.txt",
+    cpp = "cxx_temp.cc",
+    h = "cxx_temp.cc",
   }
 
   local template_name = map[ext] or "default_header.txt"

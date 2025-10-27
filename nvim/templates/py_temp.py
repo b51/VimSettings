@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-              Author: $author_name)
-                Mail: $author_email)
+              Author: $author_name
+                Mail: $author_email
             FileName: $filename
 
           Created On: $date
