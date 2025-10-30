@@ -130,7 +130,7 @@ end
 vim.api.nvim_create_augroup("AutoTemplateHeader", { clear = true })
 vim.api.nvim_create_autocmd("BufNewFile", {
   group = "AutoTemplateHeader",
-  pattern = { "*.cc", "*.cpp", "*.h", "*.sh", "*.py" },
+  pattern = { "*.c", "*.cc", "*.cpp", "*.h", "*.hpp", "*.sh", "*.py" },
   callback = insert_header_from_template,
 })
 
