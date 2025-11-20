@@ -105,6 +105,7 @@ local function insert_header_from_template()
     cc = "cxx_temp.cc",
     cpp = "cxx_temp.cc",
     h = "cxx_temp.cc",
+    hpp = "cxx_temp.cc",
   }
 
   local template_name = map[ext] or "default_header.txt"
@@ -455,6 +456,7 @@ require("lazy").setup({
     { 'ludovicchabant/vim-gutentags', },
     { 'python-mode/python-mode', branch='develop', },
     { 'mbbill/undotree', },
+    { 'junegunn/fzf.vim', },
 
     -- snacks.nvim
     {
@@ -861,7 +863,8 @@ require("lazy").setup({
     {
       'ggandor/leap.nvim',
       config = function()
-        require('leap').create_default_mappings()
+        vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')
+        vim.keymap.set('n',             'S', '<Plug>(leap-from-window)')
       end
     },
 
